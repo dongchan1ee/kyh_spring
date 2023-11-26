@@ -4,6 +4,8 @@ import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
 
+import javax.swing.text.html.Option;
+import java.util.List;
 import java.util.Optional;
 
 public class MemberService {
@@ -29,8 +31,14 @@ public class MemberService {
     /*
     전체 회원조회
      */
-    public List<Mebmer> findMembers(Member member) {
+    public List<Member> findMembers() {
         return memberRepository.findAll();
     }
+
+    public Optional<Member> findOne(Long memberId) {
+        return memberRepository.findById(memberId);
+    }
+
+
 
 }
