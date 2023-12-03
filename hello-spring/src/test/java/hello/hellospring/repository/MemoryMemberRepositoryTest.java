@@ -4,21 +4,20 @@ import hello.hellospring.domain.Member;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.annotation.Commit;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
+@Transactional
 public class MemoryMemberRepositoryTest {
 
     MemoryMemberRepository repository = new MemoryMemberRepository();
 
-    @AfterEach
-    public void afterEach() {
-        repository.cleanStore();
-    }
-
     @Test
+    @Commit
     public void save() {
         Member member = new Member();
         member.setName("이동찬");

@@ -6,27 +6,24 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
+
+import javax.transaction.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 //ctrl+shift+t를 누르면 새 테스트를 생성
+
+@SpringBootTest
+@Transactional
 class MemberServiceTest {
 
     MemberService memberService;
     MemoryMemberRepository memberRepository;
 
-    @BeforeEach
-    public void beforeEach() {
-        memberRepository = new MemoryMemberRepository();
-        memberService = new MemberService(memberRepository);
-    }
-
-    @AfterEach
-    public void afterEach() {
-        memberRepository.cleanStore();
-    }
-
     @Test
+    @Commit
     void 회원가입() {
         Member member = new Member();
         member.setName("이동찬");
